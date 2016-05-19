@@ -1,0 +1,5 @@
+supervisor:
+  exec: /usr/bin/supervisord
+  conf: /etc/supervisor/supervisord.conf
+  conf_d: /etc/supervisor/conf.d
+supervisorctl: supervisorctl

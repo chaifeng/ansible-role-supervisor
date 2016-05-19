@@ -1,0 +1,15 @@
+[program:{{ supervisor.name }}]
+command={{ supervisor.command }}
+{% if supervisor.process_name is defined %}
+process_name={{ supervisor.process_name }}
+{% endif %}
+{% if supervisor.directory is defined %}
+directory={{ supervisor.directory }}
+{% endif %}
+redirect_stderr=true
+{% if supervisor.startretries is defined %}
+startretries={{ supervisor.startretries }}
+{% endif %}
+{% if supervisor.startsecs is defined %}
+startsecs={{ supervisor.startsecs }}
+{% endif %}
