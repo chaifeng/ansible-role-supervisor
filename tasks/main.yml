@@ -1,5 +1,11 @@
-- name: Ensure supervisor
-  homebrew: name=supervisor
+- block:
+    - name: Ensure supervisor
+      homebrew: name=supervisor
+    - name: Ensure user directory 'LaunchAgents'
+      file: name="{{ ansible_env.HOME }}/Library/LaunchAgents" state=directory
+    - name: Ensure supervisord launch agent
+      template: src="homebrew.mxcl.supervisor.plist.j2" dest="{{ ansible_env.HOME }}/Library/LaunchAgents/homebrew.mxcl.supervisor.plist"
+      notify: Restart supervisor launch agent
   when: ansible_os_family == "Darwin"
 
 - name: Ensure supervisor
@@ -19,11 +25,3 @@
   tags:
     - config
 
-- block:
-    - name: Ensure user directory 'LaunchAgents'
-      file: name="{{ ansible_env.HOME }}/Library/LaunchAgents" state=directory
-    - name: Ensure supervisord launch agent
-      template: src="homebrew.mxcl.supervisor.plist.j2" dest="{{ ansible_env.HOME }}/Library/LaunchAgents/homebrew.mxcl.supervisor.plist"
-      notify: Restart supervisor launch agent
-  when: ansible_os_family == "Darwin"
-  
