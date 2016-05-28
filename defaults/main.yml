@@ -2,4 +2,8 @@ supervisor:
   exec: /usr/bin/supervisord
   conf: /etc/supervisor/supervisord.conf
   conf_d: /etc/supervisor/conf.d
+  sock: /var/run/supervisor.sock
+  logfile: /var/log/supervisor/supervisord.log
+  pidfile: /var/run/supervisord.pid
+  childlogdir: /var/log/supervisor
 supervisorctl: supervisorctl
