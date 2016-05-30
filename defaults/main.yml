@@ -1,4 +1,6 @@
 supervisor:
+  # name: dummy
+  # command: /bin/cat
   exec: /usr/bin/supervisord
   conf: /etc/supervisor/supervisord.conf
   conf_d: /etc/supervisor/conf.d
@@ -6,4 +8,6 @@ supervisor:
   logfile: /var/log/supervisor/supervisord.log
   pidfile: /var/run/supervisord.pid
   childlogdir: /var/log/supervisor
+  autostart: true
+  disable: false
 supervisorctl: supervisorctl

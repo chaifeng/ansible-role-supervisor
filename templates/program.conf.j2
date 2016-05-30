@@ -7,6 +7,9 @@ process_name={{ supervisor.process_name }}
 directory={{ supervisor.directory }}
 {% endif %}
 redirect_stderr=true
+{% if supervisor.autostart is defined %}
+autostart={{ supervisor.autostart | ternary('true', 'false') }}
+{% endif %}
 {% if supervisor.startretries is defined %}
 startretries={{ supervisor.startretries }}
 {% endif %}
