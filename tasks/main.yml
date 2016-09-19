@@ -27,3 +27,5 @@
   notify: Reload supervisor configuration
   tags:
     - config
+    - supervisor
+    - supervisor_conf
