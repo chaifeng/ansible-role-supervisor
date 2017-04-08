@@ -8,9 +8,16 @@
       notify: Restart supervisor on {{ ansible_os_family }}
   when: ansible_os_family == "Darwin"
 
-- name: Debian | Ensure supervisor
-  apt: name=supervisor
+- block:
+    - name: Debian | Ensure supervisor
+      apt: name=supervisor
+
+    - name: Debian | Enable supervisor service
+      service: name=supervisor enabled=yes state=started
   when: ansible_os_family == "Debian"
+  tags:
+    - status
+    - supervisor
 
 - name: Ensure directory supervisor.d
   file: name="{{ supervisor.conf_d }}" state=directory
@@ -19,6 +26,7 @@
   template: src="supervisord_{{ ansible_os_family }}.conf.j2" dest="{{ supervisor.conf }}" backup=yes
   notify: Restart supervisor on {{ ansible_os_family }}
   tags:
+    - config
     - supervisor
   
 - name: "Ensure supervisor {{ supervisor.name }} configuration"
