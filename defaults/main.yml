@@ -1,6 +1,7 @@
 supervisor:
   # name: dummy
   # command: /bin/cat
+  # process_name: %(program_name)s
   exec: /usr/bin/supervisord
   conf: /etc/supervisor/supervisord.conf
   conf_d: /etc/supervisor/conf.d
