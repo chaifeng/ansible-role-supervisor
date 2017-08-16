@@ -10,6 +10,9 @@ redirect_stderr=true
 {% if supervisor.autostart is defined %}
 autostart={{ supervisor.autostart | ternary('true', 'false') }}
 {% endif %}
+{% if supervisor.autorestart is defined %}
+autorestart={{ supervisor.autorestart | ternary('true', 'false') }}
+{% endif %}
 {% if supervisor.startretries is defined %}
 startretries={{ supervisor.startretries }}
 {% endif %}
