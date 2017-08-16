@@ -31,7 +31,7 @@
   
 - name: "Ensure supervisor {{ supervisor.name }} configuration"
   template: src="program.conf.j2" dest="{{ supervisor.conf_d }}/{{ supervisor.name }}.conf" backup=yes
-  when: supervisor.disable == false
+  when: supervisor.disable == false and supervisor.name is defined
   notify: Reload supervisor configuration on {{ ansible_os_family }}
   tags:
     - config
