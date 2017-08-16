@@ -13,7 +13,7 @@
       apt: name=supervisor
 
     - name: Debian | Enable supervisor service
-      service: name=supervisor enabled=yes state=started
+      service: name=supervisor enabled=yes state=started use=service
   when: ansible_os_family == "Debian"
   tags:
     - status

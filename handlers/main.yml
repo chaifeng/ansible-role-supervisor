@@ -1,9 +1,9 @@
 ---
 - name: Restart supervisor on Debian
-  service: name=supervisor state=restarted
+  service: name=supervisor state=restarted use=service
   
 - name: Reload supervisor configuration on Debian
-  service: name=supervisor state=reloaded
+  service: name=supervisor state=reloaded use=service
 
 - name: Restart supervisor on Darwin
   shell: |
