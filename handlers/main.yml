@@ -6,10 +6,11 @@
   service: name=supervisor state=reloaded use=service
 
 - name: Restart supervisor on Darwin
-  shell: |
-    launchctl list homebrew.mxcl.supervisor >/dev/null \
-      && launchctl unload {{ ansible_env.HOME }}/Library/LaunchAgents/homebrew.mxcl.supervisor.plist
-    launchctl load {{ ansible_env.HOME }}/Library/LaunchAgents/homebrew.mxcl.supervisor.plist
+  shell: brew services restart supervisor
+  # shell: |
+  #   launchctl list homebrew.mxcl.supervisor >/dev/null \
+  #     && launchctl unload {{ ansible_env.HOME }}/Library/LaunchAgents/homebrew.mxcl.supervisor.plist
+  #   launchctl load {{ ansible_env.HOME }}/Library/LaunchAgents/homebrew.mxcl.supervisor.plist
     
 - name: Reload supervisor configuration on Darwin
   shell: "{{ supervisorctl }} update"
